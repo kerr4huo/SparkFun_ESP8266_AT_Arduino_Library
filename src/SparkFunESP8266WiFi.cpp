@@ -52,8 +52,11 @@ bool ESP8266Class::begin(unsigned long baudRate, esp8266_serial_port serialPort)
 	}
 	else if (serialPort == ESP8266_HARDWARE_SERIAL)
 	{
-		Serial.begin(baudRate);
-		_serial = &Serial;
+		// teensy-wifi-weather-logger:
+		// Serial2 pins on Teensy 3.2
+		// are connected to ESP8266
+		Serial2.begin(baudRate);
+		_serial = &Serial2;
 	}
 	
 	if (test())
